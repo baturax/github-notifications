@@ -33,7 +33,7 @@ func main() {
 
 	home := os.Getenv("HOME")
 	cache := filepath.Join(home, ".cache")
-	tokenPath := filepath.Join(cache, "token")
+	tokenPath := filepath.Join(cache, "gittoken")
 	tokenByte, err := os.ReadFile(tokenPath)
 	Err(err)
 
