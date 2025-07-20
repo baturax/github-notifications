@@ -6,6 +6,9 @@ import (
 	"io"
 	"log"
 	"net/http"
+	"os"
+	"path/filepath"
+	"strings"
 )
 
 type Type0Diabet struct {
@@ -28,7 +31,13 @@ type Subject struct {
 
 func main() {
 
-	token := "yourtoken"
+	home := os.Getenv("HOME")
+	cache := filepath.Join(home, ".cache")
+	tokenPath := filepath.Join(cache, "token")
+	tokenByte, err := os.ReadFile(tokenPath)
+	Err(err)
+
+	token := strings.TrimSpace(string(tokenByte))
 
 	req, err := http.NewRequest("GET", "https://api.github.com/notifications", nil)
 	Err(err)
